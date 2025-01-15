@@ -13,9 +13,16 @@ async function listInvoices() {
 	return data.rows;
 }
 
+async function listRevenue() {
+	const data = await client.sql`
+    SELECT * FROM revenue;`;
+
+	return data.rows;
+}
+
 export async function GET() {
   try {
-  	return Response.json(await listInvoices());
+  	return Response.json(await listRevenue());
   } catch (error) {
   	return Response.json({ error }, { status: 500 });
   }
